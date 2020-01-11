@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+//        applicationId "com.loading"application
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.libraryVariants.all { variant ->
+        println(variant)
+        println(variant.buildType)
+        println(variant.buildType.name)
+        variant.outputs.each { output ->
+            println(output)
+            println(output.outputFile)
+            new File(output.outputFile.parent).deleteDir()//删除当前目录下的现有文件
+            def outputFileName = "advancedPlayer.aar"
+            output.outputFile = new File(output.outputFile.parent, outputFileName)
+        }
+    }
+}
+
+dependencies {
+    provided fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    provided files('libs/apiEngine v1.1.0.jar')
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://maven.google.com" }
+    }
+}
+
+def SDK_BASENAME = "advancedPlayer";
+def sdkJarPath = "build";
+def zipFile = file('build/intermediates/bundles/debug/classes.jar')
+
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+    baseName = SDK_BASENAME
+    destinationDir = file(sdkJarPath)
+}
+
+makeJar.dependsOn(build)

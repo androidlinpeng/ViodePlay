@@ -1,0 +1,15 @@
+
+
+1、模块名：advancedPlayer
+
+（1）openplayer 打开方法
+
+	1)参数：{x:"",y:"",w:"",h:"",title:"",url:""}
+
+（2）closeplayer  关闭方法
+
+    Android 关闭回调方法（物理返回键）：
+	
+	1){back:true} : 播放器关闭
+	
+	2){back:false} : 播放器全屏切换小屏

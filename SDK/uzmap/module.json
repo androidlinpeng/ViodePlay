@@ -1,0 +1,8 @@
+{
+	modules:[
+		{
+		    name:'divhub',
+		    class:'com.loading.APIModuleDemo'
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+	modules:[
+		{
+		    name:'advancedPlayer',
+		    class:'com.loading.APIModuleDemo'
+		}
+	]
+}
