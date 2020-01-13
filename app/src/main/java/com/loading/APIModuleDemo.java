@@ -142,6 +142,32 @@ public class APIModuleDemo extends UZModule implements View.OnClickListener, Med
 
     }
 
+    public void jsmethod_showVideo(UZModuleContext moduleContext) {
+        this.mJsCallback = moduleContext;
+        if (rootview != null){
+            rootview.setVisibility(View.VISIBLE);
+            if (this.videoView != null && !this.videoView.isPlaying()) {
+                this.videoView.start();
+                this.handler.sendEmptyMessage(WHAT_UPDATE_PROGRESS);
+                this.updatePausePlay();
+            }
+        }
+
+    }
+
+    public void jsmethod_hiddenVideo(UZModuleContext moduleContext) {
+        this.mJsCallback = moduleContext;
+        if (rootview != null){
+            rootview.setVisibility(View.GONE);
+            if (this.videoView != null && this.videoView.isPlaying()) {
+                this.videoView.pause();
+                this.handler.sendEmptyMessage(WHAT_UPDATE_PROGRESS);
+                this.updatePausePlay();
+            }
+        }
+
+    }
+
     private void openVideoPlay(UZModuleContext moduleContext) {
         this.mJsCallback = moduleContext;
         this.x = moduleContext.optInt("x");

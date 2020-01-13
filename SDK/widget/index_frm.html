@@ -44,6 +44,33 @@
 	        uzmoduledemo.closeplayer(param, resultCallback);
 		}
 
+		function closeplayer(){
+			var param = {maxstr:12,uploadflowUrl:"http://store.paifangwang.com.cn/storage/fangpai/handle"};
+			var resultCallback = function(tabstr, err){
+				document.getElementById("activity_result").innerHTML = JSON.stringify(tabstr);
+				alert(JSON.stringify(tabstr));
+			}
+	        uzmoduledemo.closeplayer(param, resultCallback);
+		}
+
+		function showVideo(){
+			var param = {maxstr:12,uploadflowUrl:"http://store.paifangwang.com.cn/storage/fangpai/handle"};
+			var resultCallback = function(tabstr, err){
+				document.getElementById("activity_result").innerHTML = JSON.stringify(tabstr);
+				alert(JSON.stringify(tabstr));
+			}
+	        uzmoduledemo.showVideo(param, resultCallback);
+		}
+
+		function hiddenVideo(){
+			var param = {maxstr:12,uploadflowUrl:"http://store.paifangwang.com.cn/storage/fangpai/handle"};
+			var resultCallback = function(tabstr, err){
+				document.getElementById("activity_result").innerHTML = JSON.stringify(tabstr);
+				alert(JSON.stringify(tabstr));
+			}
+	        uzmoduledemo.hiddenVideo(param, resultCallback);
+		}
+
 		function listenerVideo() {
 		var strDM = api.systemType; //系统
 		if (strDM == "android") {
@@ -64,9 +91,11 @@
 <div id="wrap">
     <div id="main">
         <br>
-        <div class='itemtitle'>图片模块</div>
-        <div class="clickbtn" tapmode="active" onclick="openplayer()">图片多选</div>
-        <div class="clickbtn" tapmode="active" onclick="closeplayer()">选择图片</div>
+        <div class='itemtitle'>视频</div>
+        <div class="clickbtn" tapmode="active" onclick="openplayer()">打开</div>
+        <div class="clickbtn" tapmode="active" onclick="closeplayer()">关闭</div>
+        <div class="clickbtn" tapmode="active" onclick="showVideo()">显示</div>
+        <div class="clickbtn" tapmode="active" onclick="hiddenVideo()">隐藏</div>
         <div id="activity_result"
              style="width:100%;word-wrap: break-word;word-break: normal;"></div>
         <br><br>
